@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AffiliateMath.xyz — Master Affiliate Marketing</title>
+<style>
+  :root {
+    --bg: #0f172a;
+    --card: #1e293b;
+    --accent: #38bdf8;
+    --accent-hover: #0ea5e9;
+    --text: #f8fafc;
+    --muted: #94a3b8;
+  }
+
+  body {
+    font-family: "Inter", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-x: hidden;
+  }
+
+  header {
+    text-align: center;
+    margin-top: 2rem;
+  }
+
+  header h1 {
+    font-size: 2rem;
+    background: linear-gradient(90deg, var(--accent), #22d3ee);
+    -webkit-background-clip: text;
+    color: transparent;
+    animation: glow 3s infinite alternate;
+  }
+
+  @keyframes glow {
+    from { text-shadow: 0 0 8px #38bdf8; }
+    to { text-shadow: 0 0 18px #0ea5e9; }
+  }
+
+  main {
+    width: 90%;
+    max-width: 700px;
+    background: var(--card);
+    padding: 2rem;
+    margin: 2rem;
+    border-radius: 1.5rem;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+    text-align: center;
+  }
+
+  .btn-layer {
+    position: relative;
+    display: inline-block;
+    padding: 0.9rem 1.8rem;
+    border-radius: 50px;
+    background: linear-gradient(135deg, var(--accent), #22d3ee);
+    color: #0f172a;
+    font-weight: 600;
+    text-decoration: none;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 20px rgba(56, 189, 248, 0.5);
+    margin: 0.5rem;
+  }
+
+  .btn-layer::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 50px;
+    background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.3), transparent 60%);
+    transform: scale(0);
+    transition: transform 0.5s ease;
+  }
+
+  .btn-layer:hover::before {
+    transform: scale(3);
+  }
+
+  .btn-layer:hover {
+    transform: translateY(-6px) scale(1.05);
+    box-shadow: 0 12px 30px rgba(56, 189, 248, 0.7);
+    background: linear-gradient(135deg, var(--accent-hover), #38bdf8);
+  }
+
+  .inner-btn {
+    display: block;
+    background: #0f172a;
+    color: var(--accent);
+    padding: 0.5rem 1rem;
+    margin: 0.4rem auto;
+    border-radius: 30px;
+    border: 1px solid var(--accent);
+    width: fit-content;
+    font-size: 0.9rem;
+    transition: all 0.3s;
+    text-decoration: none;
+  }
+
+  .inner-btn:hover {
+    background: var(--accent);
+    color: #0f172a;
+    transform: scale(1.05);
+  }
+
+  footer {
+    margin-top: 2rem;
+    color: var(--muted);
+  }
+
+  /* Popup Styles */
+  .popup-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    visibility: hidden;
+    opacity: 0;
+    transition: all 0.4s ease;
+    z-index: 9999;
+  }
+
+  .popup-overlay.active {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  .popup {
+    background: var(--card);
+    border-radius: 1rem;
+    padding: 2rem;
+    text-align: center;
+    max-width: 90%;
+    box-shadow: 0 0 30px rgba(56, 189, 248, 0.5);
+    animation: pop 0.4s ease;
+  }
+
+  @keyframes pop {
+    from { transform: scale(0.5); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+  }
+
+  .popup button {
+    margin-top: 1rem;
+    background: var(--accent);
+    border: none;
+    padding: 0.7rem 1.5rem;
+    border-radius: 30px;
+    cursor: pointer;
+    color: #0f172a;
+    font-weight: bold;
+  }
+
+  iframe {
+    border-radius: 1rem;
+    margin-top: 1rem;
+    width: 100%;
+    height: 250px;
+  }
+
+  .stats {
+    margin-top: 1rem;
+    color: var(--muted);
+    font-size: 0.9rem;
+  }
+
+  .section-title {
+    font-size: 1.2rem;
+    margin-top: 2rem;
+    color: var(--accent);
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>💎 AffiliateMath.xyz — Master Affiliate Marketing</h1>
+</header>
+
+<main>
+  <p>Welcome to <strong>AffiliateMath</strong> — Learn, manage, and earn with affiliate links using simple automation tools.</p>
+
+  <div class="stats">
+    ⏰ <span id="time"></span> | 🔁 Page opened: <span id="counter">0</span> times
+  </div>
+
+  <!-- Official Learning Links -->
+  <h2 class="section-title">📚 Learn the Fundamentals</h2>
+  <a href="https://fastapi.tiangolo.com/" target="_blank" class="btn-layer">⚡ FastAPI Official Docs</a>
+  <a href="https://developer.mozilla.org/en-US/docs/Web/HTML" target="_blank" class="inner-btn">HTML Docs</a>
+  <a href="https://developer.mozilla.org/en-US/docs/Web/CSS" target="_blank" class="inner-btn">CSS Docs</a>
+  <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank" class="inner-btn">JavaScript Docs</a>
+
+  <!-- Affiliate Platforms -->
+  <h2 class="section-title">🌐 Top Affiliate Platforms</h2>
+  <a href="https://affiliate-program.amazon.com/" target="_blank" class="btn-layer">🛒 Amazon Associates</a>
+  <a href="https://www.clickbank.com/" target="_blank" class="inner-btn">💸 ClickBank</a>
+  <a href="https://www.shareasale.com/" target="_blank" class="inner-btn">🤝 ShareASale</a>
+  <a href="https://impact.com/" target="_blank" class="inner-btn">🌍 Impact</a>
+  <a href="https://rakutenadvertising.com/" target="_blank" class="inner-btn">💼 Rakuten Advertising</a>
+
+  <!-- Video Tutorials -->
+  <h2 class="section-title">🎬 Watch Tutorials</h2>
+  <a href="#" onclick="showVideo('https://www.youtube.com/embed/p2U4-FbVqV4')" class="btn-layer">Affiliate Marketing for Beginners</a>
+  <a href="#" onclick="showVideo('https://www.youtube.com/embed/FgakZw6K1QQ')" class="inner-btn">Advanced Affiliate Strategies</a>
+
+  <!-- Admin Dashboard -->
+  <h2 class="section-title">🛠 Admin Access</h2>
+  <a href="/admin" class="btn-layer">Open Admin Dashboard</a>
+
+  <footer>
+    <p>© 2025 AffiliateMath.xyz | Built with ❤️ by Rizwan Khan</p>
+  </footer>
+</main>
+
+<!-- Gratitude Popup -->
+<div class="popup-overlay" id="gratitudePopup">
+  <div class="popup">
+    <h2>🌟 Thank You for Visiting AffiliateMath.xyz!</h2>
+    <p>Your curiosity is your greatest investment. Keep learning, earning, and growing! 🚀</p>
+    <button onclick="closePopup()">Let’s Begin</button>
+  </div>
+</div>
+
+<!-- Video Popup -->
+<div class="popup-overlay" id="videoPopup">
+  <div class="popup">
+    <iframe id="videoFrame" src="" allowfullscreen></iframe>
+    <button onclick="closeVideo()">Close</button>
+  </div>
+</div>
+
+<script>
+  // Gratitude popup
+  window.onload = () => {
+    document.getElementById("gratitudePopup").classList.add("active");
+
+    // Time clock
+    function updateTime() {
+      const now = new Date();
+      document.getElementById("time").textContent = now.toLocaleTimeString();
+    }
+    updateTime();
+    setInterval(updateTime, 1000);
+
+    // Counter (localStorage)
+    let count = localStorage.getItem("visitCount") || 0;
+    count++;
+    localStorage.setItem("visitCount", count);
+    document.getElementById("counter").textContent = count;
+  };
+
+  function closePopup() {
+    document.getElementById("gratitudePopup").classList.remove("active");
+  }
+
+  function showVideo(url) {
+    document.getElementById("videoFrame").src = url;
+    document.getElementById("videoPopup").classList.add("active");
+  }
+
+  function closeVideo() {
+    document.getElementById("videoFrame").src = "";
+    document.getElementById("videoPopup").classList.remove("active");
+  }
+</script>
+</body>
+</html>
