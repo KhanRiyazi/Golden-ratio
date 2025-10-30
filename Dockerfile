@@ -16,13 +16,9 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy the entire app
 COPY . .
 
-# Define build argument
-ARG ADMIN_KEY
-
 # Set environment variables
 ENV PYTHONUNBUFFERED=1 \
-    PORT=8000 \
-    ADMIN_KEY=$ADMIN_KEY
+    PORT=8000
 
 # Expose the app port
 EXPOSE 8000

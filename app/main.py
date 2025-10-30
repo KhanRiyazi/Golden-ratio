@@ -149,4 +149,4 @@ def redirect_slug(slug: str, request: Request, db: Session = Depends(get_db)):
     db.commit()
 
     print(f"➡️ Redirect: {slug} → {link.url} (from {ip})")
-    return RedirectResponse(url=link.url)
+    return RedirectResponse(url=str(link.url))
