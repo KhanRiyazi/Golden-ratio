@@ -143,7 +143,7 @@ def redirect_slug(slug: str, request: Request, db: Session = Depends(get_db)):
     if not link:
         raise HTTPException(status_code=404, detail="Invalid link")
 
-    ip = request.client.host or "unknown"
+    ip = request.headers.get("x-forwarded-for", request.client.host if request.client else "unknown")
     click = Click(link_id=link.id, ip=ip)
     db.add(click)
     db.commit()

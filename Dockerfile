@@ -13,10 +13,12 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy rest of the app
 COPY . .
 
+# Define build argument
+ARG ADMIN_KEY
 # Set environment variables
 ENV PYTHONUNBUFFERED=1 \
     PORT=8000 \
-    ADMIN_KEY=${ADMIN_KEY:-changeme}
+    ADMIN_KEY=$ADMIN_KEY
 
 # Expose the app port (Railway will map it automatically)
 EXPOSE 8000
