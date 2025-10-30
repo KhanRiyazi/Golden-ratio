@@ -16,6 +16,9 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy the entire app
 COPY . .
 
+# Define build arguments
+ARG APP_MODULE=main:app
+
 # Set environment variables
 ENV PYTHONUNBUFFERED=1 \
     PORT=8000
@@ -29,6 +32,10 @@ USER appuser
 
 # Healthcheck (uses installed curl)
 HEALTHCHECK CMD curl --fail http://localhost:${PORT}/ || exit 1
+# 🧠 Auto-detect app entry file for Railway
+# Use the 'APP_MODULE' environment variable if available, otherwise default to main:app
+ENV APP_MODULE=${APP_MODULE}
+ENV APP_MODULE=${APP_MODULE:-main:app}
 
-# Dynamically pick up Railway's assigned port
-CMD ["sh", "-c", "uvicorn main:app --host 0.0.0.0 --port ${PORT}"]
+# ✅ Run FastAPI app
+CMD ["sh", "-c", "uvicorn $APP_MODULE --host 0.0.0.0 --port ${PORT}"]
