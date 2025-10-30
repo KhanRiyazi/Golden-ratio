@@ -1,0 +1,3 @@
+name = "my-app"
+image = "ghcr.io/khanriyazi/my-app:latest"
+port = 80
