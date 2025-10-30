@@ -1,0 +1,30 @@
+name: 🚀 Docker Image CI for GHCR
+
+on:
+  push:
+    branches: [ main ]  # Trigger on push to main
+  workflow_dispatch:    # Allow manual trigger
+
+jobs:
+  build_and_publish:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Log in to GitHub Container Registry
+        run: echo "${{ secrets.GH_PAT }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+
+      - name: Build and tag Docker image
+        run: |
+          IMAGE_NAME=affiliate_saas
+          docker build . --tag ghcr.io/${{ github.repository_owner }}/${IMAGE_NAME}:latest
+
+      - name: Push Docker image to GHCR
+        run: |
+          IMAGE_NAME=affiliate_saas
+          docker push ghcr.io/${{ github.repository_owner }}/${IMAGE_NAME}:latest
+
+      - name: ✅ Done
+        run: echo "Successfully built and pushed Docker image to GHCR!"

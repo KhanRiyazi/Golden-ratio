@@ -1,9 +1,9 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>AffiliateMath Dashboard</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AffiliateMath AI Admin</title>
 <style>
 :root {
   --bg: #0f172a;
@@ -18,207 +18,121 @@ body {
   font-family: "Inter", system-ui, sans-serif;
   background: radial-gradient(circle at top left, #1e293b 0%, #0f172a 100%);
   color: var(--text);
-  margin: 0;
-  padding: 0;
+  margin: 0; padding: 0;
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  display: flex; flex-direction: column; align-items: center;
 }
-header {
-  text-align: center;
-  padding: 2rem 1rem 1rem;
-}
+header { text-align: center; padding: 2rem 1rem 1rem; }
 header h1 {
   font-size: 2rem;
   background: linear-gradient(90deg, var(--accent), #22d3ee);
-  -webkit-background-clip: text;
-  color: transparent;
+  -webkit-background-clip: text; color: transparent;
   animation: glow 3s ease-in-out infinite alternate;
 }
-@keyframes glow {
-  from { text-shadow: 0 0 5px var(--accent); }
-  to { text-shadow: 0 0 20px var(--accent-hover); }
-}
-main {
-  width: 90%;
-  max-width: 900px;
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-  margin-bottom: 2rem;
-}
+@keyframes glow { from{ text-shadow:0 0 5px var(--accent);} to{ text-shadow:0 0 20px var(--accent-hover);} }
+main { width: 90%; max-width: 950px; display: flex; flex-direction: column; gap: 2rem; margin-bottom: 2rem; }
 .card {
-  background: var(--card);
-  border-radius: var(--radius);
-  padding: 1.5rem;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+  background: var(--card); border-radius: var(--radius); padding: 1.5rem;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.4);
   backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255,255,255,0.08);
 }
-h2 {
-  margin-top: 0;
-  color: var(--accent);
-  text-shadow: 0 0 8px rgba(56,189,248,0.4);
-}
-label { display: block; margin: 0.75rem 0; }
+h2 { color: var(--accent); text-shadow: 0 0 8px rgba(56,189,248,0.4); margin-top: 0; }
+label { display:block; margin:0.75rem 0; }
 input {
-  width: 100%;
-  padding: 0.6rem;
-  border: none;
-  border-radius: 8px;
-  margin-top: 0.25rem;
-  background: rgba(255,255,255,0.1);
-  color: var(--text);
+  width:100%; padding:0.6rem; border:none; border-radius:8px;
+  margin-top:0.25rem; background:rgba(255,255,255,0.1); color:var(--text);
 }
-input:focus {
-  outline: 2px solid var(--accent);
-  background: rgba(255,255,255,0.15);
-}
+input:focus { outline:2px solid var(--accent); background:rgba(255,255,255,0.15);}
 button {
-  background: linear-gradient(135deg, var(--accent), #22d3ee);
-  color: #0f172a;
-  border: none;
-  padding: 0.6rem 1.2rem;
-  border-radius: 30px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(56,189,248,0.5);
+  background:linear-gradient(135deg,var(--accent),#22d3ee);
+  color:#0f172a; border:none; padding:0.6rem 1.2rem;
+  border-radius:30px; font-weight:600; cursor:pointer;
+  transition:all 0.3s ease; box-shadow:0 4px 15px rgba(56,189,248,0.5);
 }
-button:hover {
-  transform: translateY(-3px) scale(1.02);
-  box-shadow: 0 6px 18px rgba(56,189,248,0.6);
-  background: linear-gradient(135deg, var(--accent-hover), #38bdf8);
-}
-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 1rem;
-}
-th, td {
-  padding: 0.75rem;
-  text-align: left;
-  border-bottom: 1px solid rgba(255,255,255,0.1);
-}
-th { color: var(--accent); }
-tr:hover { background: rgba(255,255,255,0.05); transition: 0.3s; }
-.action-btn {
-  background: none;
-  border: none;
-  color: var(--accent);
-  cursor: pointer;
-  font-size: 1.2rem;
-}
-.action-btn:hover { color: var(--accent-hover); }
-a.link {
-  color: var(--accent);
-  text-decoration: none;
-}
-a.link:hover {
-  text-decoration: underline;
-  color: var(--accent-hover);
-}
-footer {
-  text-align: center;
-  margin-top: 1rem;
-  color: var(--muted);
-}
-footer a {
-  color: var(--accent);
-  text-decoration: none;
-}
-footer a:hover { color: var(--accent-hover); }
+button:hover { transform:translateY(-3px) scale(1.02); background:linear-gradient(135deg,var(--accent-hover),#38bdf8);}
+table { width:100%; border-collapse:collapse; margin-top:1rem; }
+th,td { padding:0.75rem; text-align:left; border-bottom:1px solid rgba(255,255,255,0.1);}
+th { color:var(--accent);}
+tr:hover { background:rgba(255,255,255,0.05); transition:0.3s;}
+.action-btn { background:none; border:none; color:var(--accent); cursor:pointer; font-size:1.2rem;}
+footer { text-align:center; margin-top:1rem; color:var(--muted);}
 </style>
 </head>
 <body>
 
 <header>
-  <h1>AffiliateMath Dashboard</h1>
-  <p style="color:var(--muted)">Manage links simply — improve daily (Kaizen).</p>
+  <h1>AffiliateMath AI Admin</h1>
+  <p style="color:var(--muted)">Manage affiliate links — Kaizen style ⚙️</p>
 </header>
 
 <main>
+  <!-- Add Link Form -->
   <section class="card">
-    <h2>Add New Link</h2>
-    <form id="linkForm">
-      <label>Title<br><input id="title" required></label>
-      <label>URL<br><input id="url" type="url" required placeholder="https://..."></label>
-      <label>Slug<br><input id="slug" placeholder="optional"></label>
-      <button type="submit">➕ Add Link</button>
+    <h2>➕ Add New Link</h2>
+    <form method="post" action="/links">
+      <label>Title<br><input name="title" required></label>
+      <label>URL<br><input name="url" type="url" required placeholder="https://..."></label>
+      <label>Slug<br><input name="slug" placeholder="optional"></label>
+      <div style="margin-top:1rem;">
+        <button type="submit">Add Link</button>
+        <button type="button" id="aiSuggest">🤖 AI Suggest</button>
+      </div>
     </form>
   </section>
 
+  <!-- Existing Links -->
   <section class="card">
-    <h2>My Links</h2>
+    <h2>📜 My Links ({{ total_links }})</h2>
     <table>
       <thead>
-        <tr><th>ID</th><th>Title</th><th>URL</th><th>Slug</th><th>Clicks</th><th>Actions</th></tr>
+        <tr><th>ID</th><th>Title</th><th>Slug</th><th>Clicks</th><th>Actions</th></tr>
       </thead>
-      <tbody id="linkTableBody"></tbody>
+      <tbody>
+      {% if links %}
+        {% for link in links %}
+        <tr id="row-{{ link.id }}">
+          <td>{{ link.id }}</td>
+          <td><a href="/{{ link.slug }}" target="_blank" style="color:var(--accent);">{{ link.title }}</a></td>
+          <td>{{ link.slug }}</td>
+          <td>{{ link.clicks|length }}</td>
+          <td><button class="action-btn" onclick="deleteLink({{ link.id }})">🗑️</button></td>
+        </tr>
+        {% endfor %}
+      {% else %}
+        <tr><td colspan="5" style="text-align:center;color:var(--muted)">No links yet.</td></tr>
+      {% endif %}
+      </tbody>
     </table>
   </section>
 </main>
 
-<footer>
-  <p>🔗 Back to <a href="/">AffiliateMath.xyz</a></p>
-</footer>
+<footer><p>🔗 <a href="/">Back to AffiliateMath.xyz</a></p></footer>
 
 <script>
-let links = JSON.parse(localStorage.getItem("links") || "[]");
-
-function nextId() {
-  return links.length ? Math.max(...links.map(l => l.id)) + 1 : 1;
-}
-
-// Render table
-function render() {
-  const body = document.getElementById("linkTableBody");
-  body.innerHTML = "";
-  if (links.length === 0) {
-    body.innerHTML = `<tr><td colspan="6" style="text-align:center; color:var(--muted);">No links yet.</td></tr>`;
-    return;
-  }
-  links.forEach(link => {
-    const row = document.createElement("tr");
-    row.innerHTML = `
-      <td>${link.id}</td>
-      <td contenteditable="true" onblur="editField(${link.id}, 'title', this.innerText)">${link.title}</td>
-      <td><a href="${link.url}" class="link" target="_blank">${link.url}</a></td>
-      <td contenteditable="true" onblur="editField(${link.id}, 'slug', this.innerText)">${link.slug}</td>
-      <td>${link.clicks}</td>
-      <td><button class="action-btn" onclick="deleteLink(${link.id})">🗑️</button></td>`;
-    body.appendChild(row);
-  });
-  localStorage.setItem("links", JSON.stringify(links));
-}
-
-// Add new link
-document.getElementById("linkForm").addEventListener("submit", e => {
-  e.preventDefault();
-  const title = document.getElementById("title").value.trim();
-  const url = document.getElementById("url").value.trim();
-  const slug = document.getElementById("slug").value.trim() || title.toLowerCase().replace(/\s+/g, "-");
-  links.push({ id: nextId(), title, url, slug, clicks: 0 });
-  document.getElementById("linkForm").reset();
-  render();
-});
-
-function editField(id, field, value) {
-  const link = links.find(l => l.id === id);
-  if (link) link[field] = value.trim();
-  localStorage.setItem("links", JSON.stringify(links));
-  render(); // re-render to refresh the clickable URL
-}
-
-function deleteLink(id) {
+// Delete Link
+async function deleteLink(id) {
   if (confirm("Delete this link?")) {
-    links = links.filter(l => l.id !== id);
-    render();
+    const res = await fetch(`/links/${id}`, { method: "DELETE" });
+    if (res.ok) document.getElementById(`row-${id}`).remove();
+    else alert("Failed to delete link.");
   }
 }
 
-render();
+// AI Suggestion (mock, local)
+document.getElementById("aiSuggest").addEventListener("click", async () => {
+  const ideas = [
+    "AI Tools Discount 2025",
+    "Best Coding Courses",
+    "Cloud Deals for Developers",
+    "Boost Productivity Toolkit",
+    "Next-Gen Learning Platform"
+  ];
+  const idea = ideas[Math.floor(Math.random() * ideas.length)];
+  document.querySelector("input[name='title']").value = idea;
+  document.querySelector("input[name='slug']").value = idea.toLowerCase().replace(/\s+/g, "-");
+});
 </script>
+
 </body>
 </html>
