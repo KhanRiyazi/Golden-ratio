@@ -4,10 +4,18 @@ from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
 from sqlalchemy.orm import Session
 from typing import Optional
-import string, random, os
+import string, random, os, sys
 
-# Import internal modules
-from .db import get_db, init_db, Link, Click, DB_PATH
+# --------------------------------
+# Handle imports for both local & Docker
+# --------------------------------
+# Ensure /app is in sys.path (important for Docker)
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+if BASE_DIR not in sys.path:
+    sys.path.append(BASE_DIR)
+
+# Import internal modules (non-relative for Docker)
+from db import get_db, init_db, Link, Click, DB_PATH
 
 # --------------------------------
 # App Initialization
@@ -15,17 +23,21 @@ from .db import get_db, init_db, Link, Click, DB_PATH
 app = FastAPI(title="Affiliate Link Manager 🚀")
 
 # Base directories
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 TEMPLATE_DIR = os.path.join(BASE_DIR, "templates")
 STATIC_DIR = os.path.join(BASE_DIR, "static")
 
 # Mount static directory if available
 if os.path.exists(STATIC_DIR):
     app.mount("/static", StaticFiles(directory=STATIC_DIR), name="static")
+else:
+    print("⚠️ Warning: static/ directory not found.")
 
 # Setup Jinja templates
-templates = Jinja2Templates(directory=TEMPLATE_DIR)
-
+if os.path.exists(TEMPLATE_DIR):
+    templates = Jinja2Templates(directory=TEMPLATE_DIR)
+else:
+    print("⚠️ Warning: templates/ directory not found.")
+    templates = Jinja2Templates(directory=BASE_DIR)
 
 # --------------------------------
 # Utility: Generate Random Slug
@@ -34,7 +46,6 @@ def generate_slug(length: int = 6) -> str:
     """Generate a random short slug."""
     chars = string.ascii_lowercase + string.digits
     return ''.join(random.choice(chars) for _ in range(length))
-
 
 # --------------------------------
 # Startup Event (initialize DB)
@@ -46,7 +57,6 @@ def on_startup():
     print(f"✅ Database initialized at: {DB_PATH}")
     print(f"📂 Working directory: {os.getcwd()}")
 
-
 # --------------------------------
 # Home Page (index.html)
 # --------------------------------
@@ -54,7 +64,6 @@ def on_startup():
 def index(request: Request):
     """Landing page."""
     return templates.TemplateResponse("index.html", {"request": request})
-
 
 # --------------------------------
 # Admin Dashboard (View All Links)
@@ -67,7 +76,6 @@ def admin_dashboard(request: Request, db: Session = Depends(get_db)):
         "admin.html",
         {"request": request, "links": links, "total_links": len(links)}
     )
-
 
 # --------------------------------
 # Add New Link (Form POST)
@@ -96,7 +104,6 @@ def create_link(
     print(f"✅ Added new link: {new_link.title} (slug={new_link.slug})")
     return RedirectResponse(url="/admin", status_code=303)
 
-
 # --------------------------------
 # API: Fetch All Links (JSON)
 # --------------------------------
@@ -116,7 +123,6 @@ def get_all_links(db: Session = Depends(get_db)):
         for link in links
     ]
 
-
 # --------------------------------
 # API: Delete a Link
 # --------------------------------
@@ -131,7 +137,6 @@ def delete_link(link_id: int, db: Session = Depends(get_db)):
     db.commit()
     print(f"🗑 Deleted link: ID={link_id}")
     return {"message": "Link deleted successfully"}
-
 
 # --------------------------------
 # Redirect + Click Tracking
@@ -150,3 +155,10 @@ def redirect_slug(slug: str, request: Request, db: Session = Depends(get_db)):
 
     print(f"➡️ Redirect: {slug} → {link.url} (from {ip})")
     return RedirectResponse(url=str(link.url))
+
+# --------------------------------
+# Local Debug Launcher
+# --------------------------------
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)
